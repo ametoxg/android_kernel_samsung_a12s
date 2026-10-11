@@ -1299,6 +1299,9 @@ config TOUCHSCREEN_ROHM_BU21023
 	  To compile this driver as a module, choose M here: the
 	  module will be called bu21023_ts.
 
+if MACH_EXYNOS850_A12S
+source "drivers/input/touchscreen/synaptics/td4150/Kconfig"
+endif
 source "drivers/input/touchscreen/ili9881x/Kconfig"
 source "drivers/input/touchscreen/novatek/nt36525/Kconfig"
 endif
