@@ -55,6 +55,7 @@
 #define ARM64_SSBS				34
 #define ARM64_SPECTRE_BHB			36
 
-#define ARM64_NCAPS				35
+/* kabi: reserve 35 - 62 for future cpu capabilities */
+#define ARM64_NCAPS				62
 
 #endif /* __ASM_CPUCAPS_H */
