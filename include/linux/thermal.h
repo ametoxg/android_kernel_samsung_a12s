@@ -127,6 +127,8 @@ struct thermal_zone_device_ops {
 		       enum thermal_trip_type);
 	int (*throttle_hotplug) (struct thermal_zone_device *);
 	bool (*is_wakeable)(struct thermal_zone_device *);
+	int (*set_polling_delay)(struct thermal_zone_device *, int);
+	int (*set_passive_delay)(struct thermal_zone_device *, int);
 };
 
 struct thermal_cooling_device_ops {
