@@ -147,7 +147,6 @@
 		iliteck,ubl-byte-delay-us = <20>;
 		iliteck,area-size = <48 81 30>;
 		iliteck,enable_settings_aot;
-		iliteck,enable_sysinput_enabled;
 		iliteck,support_ear_detect_mode;
 		iliteck,prox_lp_scan_enabled;
 		iliteck,lcd_rst_delay = <2>;
@@ -180,7 +179,6 @@
 		novatek,enable_settings_aot;
 		novatek,support_ear_detect_mode;
 		novatek,prox_lp_scan_enabled;
-		novatek,enable_sysinput_enabled;
 		novatek,lcdid = <1 2 6>;	// CSOT DTC SHARP
 		novatek,lcdtype = <0 0x0aa240 0x0a1240 0 0 0 0x0af240>;
 		novatek,fw_name = "", "tsp_novatek/nt36525_a12s_csot.bin", "tsp_novatek/nt36525_a12s_dtc.bin", "", "", "", "tsp_novatek/nt36525_a12s_sharp.bin";
