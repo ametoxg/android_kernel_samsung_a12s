@@ -2989,6 +2989,8 @@ struct cfg80211_update_owe_info {
  * @set_default_key: set the default key on an interface
  *
  * @set_default_mgmt_key: set the default management frame key on an interface
+
+ * @set_default_beacon_key: set the default Beacon frame key on an interface
  *
  * @set_rekey_data: give the data necessary for GTK rekeying to the driver
  *
@@ -3314,6 +3316,9 @@ struct cfg80211_ops {
 	int	(*set_default_mgmt_key)(struct wiphy *wiphy,
 					struct net_device *netdev,
 					u8 key_index);
+	int	(*set_default_beacon_key)(struct wiphy *wiphy,
+					  struct net_device *netdev,
+					  u8 key_index);
 
 	int	(*start_ap)(struct wiphy *wiphy, struct net_device *dev,
 			    struct cfg80211_ap_settings *settings);
@@ -5165,27 +5170,6 @@ cfg80211_inform_bss_frame(struct wiphy *wiphy,
 	};
 
 	return cfg80211_inform_bss_frame_data(wiphy, &data, mgmt, len, gfp);
-}
-
-/**
- * cfg80211_gen_new_bssid - generate a nontransmitted BSSID for multi-BSSID
- * @bssid: transmitter BSSID
- * @max_bssid: max BSSID indicator, taken from Multiple BSSID element
- * @mbssid_index: BSSID index, taken from Multiple BSSID index element
- * @new_bssid: calculated nontransmitted BSSID
- */
-static inline void cfg80211_gen_new_bssid(const u8 *bssid, u8 max_bssid,
-					  u8 mbssid_index, u8 *new_bssid)
-{
-	u64 bssid_u64 = ether_addr_to_u64(bssid);
-	u64 mask = GENMASK_ULL(max_bssid - 1, 0);
-	u64 new_bssid_u64;
-
-	new_bssid_u64 = bssid_u64 & ~mask;
-
-	new_bssid_u64 |= ((bssid_u64 & mask) + mbssid_index) & mask;
-
-	u64_to_ether_addr(new_bssid_u64, new_bssid);
 }
 
 /**
