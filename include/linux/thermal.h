@@ -120,6 +120,7 @@ struct thermal_zone_device_ops {
 	int (*notify) (struct thermal_zone_device *, int,
 		       enum thermal_trip_type);
 	int (*throttle_hotplug) (struct thermal_zone_device *);
+	bool (*is_wakeable)(struct thermal_zone_device *);
 };
 
 struct thermal_cooling_device_ops {
@@ -439,6 +440,7 @@ struct __thermal_zone {
 	int offset;
 	struct thermal_zone_device *tzd;
 	bool default_disable;
+	bool is_wakeable;
 
 	/* trip data */
 	int ntrips;
