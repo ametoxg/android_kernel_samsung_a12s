@@ -10,6 +10,8 @@ CONFIG_EXTRA_FIRMWARE_DIR="firmware"
 fwdir := $(subst $(quote),,$(CONFIG_EXTRA_FIRMWARE_DIR))
 fwabs := $(addprefix $(srctree)/,$(filter-out /%,$(fwdir)))$(filter /%,$(fwdir))
 
+fw-external-$(CONFIG_TOUCHSCREEN_SYNAPTICS_TCM) += tsp_synaptics/td4150_a12s_boe.bin tsp_synaptics/td4375_a12s_boe.bin \
+														tsp_synaptics/td4160_a12s_boe.bin
 fw-external-$(CONFIG_TOUCHSCREEN_ILITEK_ILI9881X) += tsp_ilitek/ili9881x_m12s.hex tsp_ilitek/ili7806s_m12s.hex \
 														tsp_ilitek/ili9882_a12s.hex tsp_ilitek/ili7807s_a12s.hex
 fw-external-$(CONFIG_TOUCHSCREEN_NT36xxx_HOSTDL_SPI) += tsp_novatek/nt36525_m12s_csot.bin tsp_novatek/nt36525_m12s_mp_csot.bin \
