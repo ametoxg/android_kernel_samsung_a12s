@@ -182,6 +182,7 @@ struct devfreq {
 	struct srcu_notifier_head transition_notifier_list;
 
 	bool disabled_pm_qos;
+	bool dev_suspended;
 };
 
 struct devfreq_freqs {
