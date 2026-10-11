@@ -1754,6 +1754,8 @@ struct xhci_hcd {
 	struct	xhci_intr_reg __iomem *ir_set_audio;
 #endif
 
+	int		core_id;
+
 	/* Cached register copies of read-only HC data */
 	__u32		hcs_params1;
 	__u32		hcs_params2;
