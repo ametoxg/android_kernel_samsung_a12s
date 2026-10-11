@@ -1,0 +1,20 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Galaxy A12 DTBO, board revision 01
+ *
+ * Copyright (C) 2026 The galaxym12development Project
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "SAMSUNG", " A12S_EUR_OPEN", " EXYNOS850_R";
+	dtbo-hw_rev = <0x01>;
+	dtbo-hw_rev_end = <0x20>;
+};
+
+#include "exynos850-a12s_smd.dtsi"
+#include "exynos850.a12s_eur_open.01.dtsi"
+#include "exynos850-a12s_board.dtsi"
+#include "exynos850-a12s_sensor_grip_01.dtsi"

@@ -1,0 +1,127 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Galaxy A12 board revision 01 grip data, from the stock DTBO
+ *
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ */
+
+/ {
+	fragment@grip0 {
+		target-path = "/acpm_mfd_bus@11A50000";
+		__overlay__ {
+			s2mpu12mfd@00 {
+				regulators {
+					LDO27 {
+						regulator-always-on;
+					};
+				};
+			};
+		};
+	};
+};
+
+/ {
+	fragment@grip1 {
+		target-path = "/pinctrl@11850000";
+		__overlay__ {
+			grip_int: grip-int {
+				samsung,pin-drv = <0x00>;
+				samsung,pin-pud = <0x00>;
+				samsung,pins = "gpa1-6";
+			};
+			grip_sub_i2c: grip-sub-i2c {
+				samsung,pin-function = <0x03>;
+				samsung,pin-pud = <0x00>;
+				samsung,pin-pud-pdn = <0x00>;
+				samsung,pins = "gpa3-5\0gpa3-6";
+			};
+			grip_sub_int: grip-sub-int {
+				samsung,pin-drv = <0x00>;
+				samsung,pin-function = <0x0f>;
+				samsung,pin-pud = <0x00>;
+				samsung,pins = "gpa0-1";
+			};
+		};
+	};
+};
+
+/ {
+	fragment@grip2 {
+		target-path = "/pinctrl@139b0000";
+		__overlay__ {
+			grip_i2c: grip-i2c {
+				samsung,pin-function = <0x02>;
+				samsung,pin-pud = <0x00>;
+				samsung,pin-pud-pdn = <0x00>;
+				samsung,pins = "gpp1-3\0gpp1-2";
+			};
+		};
+	};
+};
+
+/ {
+	fragment@grip3 {
+		target-path = "/i2c@13870000";
+		__overlay__ {
+			clock-frequency = <0x61a80>;
+			pinctrl-0 = <&grip_i2c>;
+			samsung,reset-before-trans;
+			status = "okay";
+			sx9360: sx9360-i2c@28 {
+				compatible = "sx9360";
+				interrupt-parent = <&gpa1>;
+				interrupts = <0x06 0x00 0x00>;
+				pinctrl-0 = <&grip_int>;
+				pinctrl-names = "default";
+				reg = <0x28>;
+				status = "okay";
+				sx9360,againfreq_reg = <0x34>;
+				sx9360,gainrawfilt_reg = <0x12>;
+				sx9360,hallic_cert_detect = <0x00>;
+				sx9360,hallic_detect = <0x00>;
+				sx9360,hyst_reg = <0x19>;
+				sx9360,nirq-gpio = <&gpa1 0x06 0x00>;
+				sx9360,proxthresh_reg = <0x25>;
+				sx9360,refagainfreq_reg = <0x36>;
+				sx9360,refgainrawfilt_reg = <0x22>;
+				sx9360,refresolution_reg = <0x0f>;
+				sx9360,regproxctrl3_reg = <0x0c>;
+				sx9360,resolution_reg = <0x0f>;
+			};
+		};
+	};
+};
+
+/ {
+	fragment@grip4 {
+		target-path = "/i2c@13880000";
+		__overlay__ {
+			clock-frequency = <0x61a80>;
+			pinctrl-0 = <&grip_sub_i2c>;
+			samsung,reset-before-trans;
+			status = "okay";
+			sx9360_sub: sx9360_sub-i2c@28 {
+				compatible = "sx9360_sub";
+				interrupt-parent = <&gpa0>;
+				interrupts = <0x01 0x00 0x00>;
+				pinctrl-0 = <&grip_sub_int>;
+				pinctrl-names = "default";
+				reg = <0x28>;
+				status = "okay";
+				sx9360,againfreq_reg = <0x34>;
+				sx9360,gainrawfilt_reg = <0x22>;
+				sx9360,hyst_reg = <0x19>;
+				sx9360,proxthresh_reg = <0x20>;
+				sx9360,refagainfreq_reg = <0x36>;
+				sx9360,refgainrawfilt_reg = <0x22>;
+				sx9360,refresolution_reg = <0x0f>;
+				sx9360,reggnrlctrl2_reg = <0x19>;
+				sx9360,regproxctrl3_reg = <0x0c>;
+				sx9360,resolution_reg = <0x0f>;
+				sx9360_sub,hallic_cert_detect = <0x00>;
+				sx9360_sub,hallic_detect = <0x00>;
+				sx9360_sub,nirq-gpio = <&gpa0 0x01 0x00>;
+			};
+		};
+	};
+};
