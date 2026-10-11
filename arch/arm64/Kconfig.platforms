@@ -380,6 +380,12 @@ config SOC_EXYNOS3830
 	select PINCTRL
 	select SAMSUNG_DMADEV
 
+config MACH_EXYNOS850_A12S
+	bool "Samsung Galaxy A12 (a12s)"
+	depends on SOC_EXYNOS3830 && !M12_MODEL_OVERLAY
+	help
+	  Build the Galaxy A12 (SM-A127F/M) board drivers and DTBO.
+
 config ARCH_EXYNOS9
 	bool "ARMv8 based Samsung Exynos9"
 	select HAVE_ARM_SCU if SMP
