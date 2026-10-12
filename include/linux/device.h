@@ -902,6 +902,11 @@ struct device_link {
 	struct rcu_head rcu_head;
 #endif
 	bool supplier_preactivated; /* Owned by consumer probe. */
+
+	ANDROID_KABI_RESERVE(1);
+	ANDROID_KABI_RESERVE(2);
+	ANDROID_KABI_RESERVE(3);
+	ANDROID_KABI_RESERVE(4);
 };
 
 /**
@@ -935,6 +940,11 @@ struct dev_links_info {
 	struct list_head defer_sync;
 	bool need_for_probe;
 	enum dl_dev_state status;
+
+	ANDROID_KABI_RESERVE(1);
+	ANDROID_KABI_RESERVE(2);
+	ANDROID_KABI_RESERVE(3);
+	ANDROID_KABI_RESERVE(4);
 };
 
 /**
