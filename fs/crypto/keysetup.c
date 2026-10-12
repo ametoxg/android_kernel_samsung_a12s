@@ -235,6 +235,7 @@ static int setup_per_mode_enc_key(struct fscrypt_info *ci,
 	}
 done_unlock:
 	ci->ci_key = *prep_key;
+
 	err = 0;
 out_unlock:
 	mutex_unlock(&fscrypt_mode_key_setup_mutex);
