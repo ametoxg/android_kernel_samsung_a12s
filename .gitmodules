@@ -1,3 +1,7 @@
 [submodule "BakaSU"]
 	path = BakaSU
 	url = git@github.com:Baka-SU/BakaSU.git
+[submodule "nomount"]
+	path = nomount
+	url = git@github.com:maxsteeel/nomount.git
+	branch = dev
