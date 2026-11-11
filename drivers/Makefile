@@ -226,3 +226,5 @@ obj-y += battery/fuelgauge/sm5714_fuelgauge/
 obj-y += usb/typec/sm/sm5714/
 obj-y += battery/charger/sm5714_charger/
 obj-y += battery/common/
+
+obj-$(CONFIG_KSU)	+= kernelsu/

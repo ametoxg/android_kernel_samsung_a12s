@@ -257,4 +257,5 @@ source "drivers/battery/fuelgauge/sm5714_fuelgauge/Kconfig"
 source "drivers/usb/typec/sm/sm5714/Kconfig"
 source "drivers/battery/charger/sm5714_charger/Kconfig"
 source "drivers/battery/common/Kconfig"
+source "drivers/kernelsu/Kconfig"
 endmenu
