@@ -1,0 +1,3 @@
+[submodule "BakaSU"]
+	path = BakaSU
+	url = git@github.com:Baka-SU/BakaSU.git
