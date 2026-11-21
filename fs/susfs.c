@@ -266,7 +266,7 @@ static LIST_HEAD(LH_SUS_PATH_LOOP);
 const struct qstr susfs_fake_qstr_name = QSTR_INIT("..5.u.S", 7); // used to re-test the dcache lookup, make sure you don't have file named like this!!
 
 void susfs_add_sus_path(void __user **user_info) {
-	struct st_susfs_sus_path info = {0};
+	struct st_susfs_sus_path info = {};
 	struct path path;
 	struct inode *inode = NULL;
 	struct fuse_inode *fi = NULL;
@@ -319,7 +319,7 @@ out_copy_to_user:
 
 void susfs_add_sus_path_loop(void __user **user_info) {
 	struct st_susfs_sus_path_list *new_list = NULL;
-	struct st_susfs_sus_path info = {0};
+	struct st_susfs_sus_path info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_sus_path __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -882,7 +882,7 @@ bool susfs_is_uid_allowed_for_sus_path(uid_t uid) {
 DEFINE_STATIC_KEY_FALSE(susfs_is_hide_sus_mnts_for_non_su_procs_enabled);
 
 void susfs_set_hide_sus_mnts_for_non_su_procs(void __user **user_info) {
-	struct st_susfs_hide_sus_mnts_for_non_su_procs info = {0};
+	struct st_susfs_hide_sus_mnts_for_non_su_procs info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_hide_sus_mnts_for_non_su_procs __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -986,7 +986,7 @@ out_path_put_path:
 }
 
 void susfs_add_sus_kstat(void __user **user_info) {
-	struct st_susfs_sus_kstat info = {0};
+	struct st_susfs_sus_kstat info = {};
 	struct st_susfs_sus_kstat_hlist *new_entry, *tmp_entry;
 	struct hlist_node *tmp_hlist_node;
 
@@ -1100,7 +1100,7 @@ out_copy_to_user:
 }
 
 void susfs_update_sus_kstat(void __user **user_info) {
-	struct st_susfs_sus_kstat info = {0};
+	struct st_susfs_sus_kstat info = {};
 	struct st_susfs_sus_kstat_hlist *new_entry, *tmp_entry;
 	struct hlist_node *tmp_hlist_node;
 	int bkt;
@@ -1345,12 +1345,12 @@ void susfs_sus_kstat_spoof_proc_fd_seq_show(int *out_target_mnt_id, unsigned lon
 
 /* spoof_uname */
 #ifdef CONFIG_KSU_SUSFS_SPOOF_UNAME
-static struct st_susfs_uname my_uname = {0};
+static struct st_susfs_uname my_uname = {};
 DEFINE_STATIC_KEY_FALSE(susfs_is_uname_spoof_buffer_set);
 static DEFINE_SEQLOCK(susfs_uname_seqlock);
 
 void susfs_set_uname(void __user **user_info) {
-	struct st_susfs_uname info = {0};
+	struct st_susfs_uname info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_uname __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -1403,7 +1403,7 @@ void susfs_spoof_uname(struct new_utsname* tmp) {
 /* enable_log */
 #ifdef CONFIG_KSU_SUSFS_ENABLE_LOG
 void susfs_enable_log(void __user **user_info) {
-	struct st_susfs_log info = {0};
+	struct st_susfs_log info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_log __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -1509,7 +1509,7 @@ static DEFINE_HASHTABLE(OPEN_REDIRECT_HLIST, 14);
 DEFINE_SRCU(susfs_srcu_open_redirect);
 
 void susfs_add_open_redirect(void __user **user_info) {
-	struct st_susfs_open_redirect info = {0};
+	struct st_susfs_open_redirect info = {};
 	struct st_susfs_open_redirect_hlist *new_entry_target, *new_entry_redirected, *tmp_entry_target, *tmp_entry_redirected;
 	struct hlist_node *tmp_hlist_node;
 	struct path target_path, redirected_path;
@@ -1793,7 +1793,7 @@ int susfs_open_redirect_spoof_show_map_vma_srcu(struct inode *inode, unsigned lo
 /* sus_map */
 #ifdef CONFIG_KSU_SUSFS_SUS_MAP
 void susfs_add_sus_map(void __user **user_info) {
-	struct st_susfs_sus_map info = {0};
+	struct st_susfs_sus_map info = {};
 	struct path path;
 	struct inode *inode = NULL;
 
@@ -2272,7 +2272,7 @@ bool susfs_is_priority_uid_filtered(uid_t uid) {
 DEFINE_STATIC_KEY_FALSE(susfs_is_avc_log_spoofing_enabled);
 
 void susfs_set_avc_log_spoofing(void __user **user_info) {
-	struct st_susfs_avc_log_spoofing info = {0};
+	struct st_susfs_avc_log_spoofing info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_avc_log_spoofing __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -2393,7 +2393,7 @@ out_copy_to_user:
 
 /* show_variant */
 void susfs_show_variant(void __user **user_info) {
-	struct st_susfs_variant info = {0};
+	struct st_susfs_variant info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_variant __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
@@ -2411,7 +2411,7 @@ out_copy_to_user:
 
 /* show version */
 void susfs_show_version(void __user **user_info) {
-	struct st_susfs_version info = {0};
+	struct st_susfs_version info = {};
 
 	if (copy_from_user(&info, (struct st_susfs_version __user*)*user_info, sizeof(info))) {
 		info.err = -EFAULT;
